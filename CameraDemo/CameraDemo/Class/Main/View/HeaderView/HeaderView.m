@@ -14,6 +14,8 @@
 
 @property (strong, nonatomic) UIButton *flashSwitchBtn;
 
+@property (strong, nonatomic) VideoTools *tools;
+
 @end
 
 @implementation HeaderView
@@ -49,7 +51,10 @@
     [self.flashSwitchBtn setImage:[UIImage imageNamed:@"闪光灯-关"] forState:UIControlStateNormal];
     [self.flashSwitchBtn setImage:[UIImage imageNamed:@"闪光灯"] forState:UIControlStateSelected];
     [self.flashSwitchBtn addTarget:self action:@selector(clickFlashSwitch) forControlEvents:UIControlEventTouchUpInside];
+    self.flashSwitchBtn.selected = NO;
     [self addSubview:self.flashSwitchBtn];
+    
+    self.tools = [[VideoTools alloc] init];
     
     
 }
@@ -64,6 +69,7 @@
 
 - (void)clickFlashSwitch {
     self.flashSwitchBtn.selected = !self.flashSwitchBtn.selected;
+    
     __weak typeof(self)weakSelf = self;
     if ([weakSelf.delegate respondsToSelector:@selector(changeCameraDriveFlashOnClick:)]) {
         [weakSelf.delegate changeCameraDriveFlashOnClick:self.flashSwitchBtn];
