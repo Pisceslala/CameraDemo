@@ -10,6 +10,7 @@
 		2325313A1F1C613E00AF41E0 /* VideoProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 232531391F1C613E00AF41E0 /* VideoProcessView.m */; };
 		2325313E1F1C6FC600AF41E0 /* BottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2325313D1F1C6FC600AF41E0 /* BottomView.m */; };
 		232531421F1C8C6000AF41E0 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 232531411F1C8C6000AF41E0 /* HeaderView.m */; };
+		232531451F1CA2B000AF41E0 /* PreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 232531441F1CA2B000AF41E0 /* PreviewController.m */; };
 		2325430E1F1C488000DF26BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2325430D1F1C488000DF26BA /* main.m */; };
 		232543171F1C488000DF26BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 232543151F1C488000DF26BA /* Main.storyboard */; };
 		2325431A1F1C488000DF26BA /* CameraDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 232543181F1C488000DF26BA /* CameraDemo.xcdatamodeld */; };
@@ -47,6 +48,8 @@
 		2325313D1F1C6FC600AF41E0 /* BottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomView.m; sourceTree = "<group>"; };
 		232531401F1C8C6000AF41E0 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		232531411F1C8C6000AF41E0 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		232531431F1CA2B000AF41E0 /* PreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewController.h; sourceTree = "<group>"; };
+		232531441F1CA2B000AF41E0 /* PreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewController.m; sourceTree = "<group>"; };
 		232543091F1C488000DF26BA /* CameraDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2325430D1F1C488000DF26BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		232543161F1C488000DF26BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				2325434F1F1C4AC900DF26BA /* OpenViewController.m */,
 				232543511F1C4B0F00DF26BA /* CameraViewController.h */,
 				232543521F1C4B0F00DF26BA /* CameraViewController.m */,
+				232531431F1CA2B000AF41E0 /* PreviewController.h */,
+				232531441F1CA2B000AF41E0 /* PreviewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 			files = (
 				232543531F1C4B0F00DF26BA /* CameraViewController.m in Sources */,
 				232531421F1C8C6000AF41E0 /* HeaderView.m in Sources */,
+				232531451F1CA2B000AF41E0 /* PreviewController.m in Sources */,
 				232543581F1C4C5200DF26BA /* VideoTools.m in Sources */,
 				232543501F1C4AC900DF26BA /* OpenViewController.m in Sources */,
 				2325431A1F1C488000DF26BA /* CameraDemo.xcdatamodeld in Sources */,

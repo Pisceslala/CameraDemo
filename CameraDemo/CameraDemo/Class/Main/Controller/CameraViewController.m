@@ -11,6 +11,7 @@
 #import "VideoProcessView.h"
 #import "BottomView.h"
 #import "HeaderView.h"
+#import "PreviewController.h"
 
 #define kVideoMaxTime 10.0 // MAX TIME
 
@@ -30,6 +31,8 @@
 
 @property (strong, nonatomic) VideoProcessView *processView;
 
+@property (strong, nonatomic) PreviewController *previewVC;
+
 @property (nonatomic, assign) CGFloat timeCount;
 @property (nonatomic, assign) CGFloat timeMargin;
 
@@ -48,18 +51,36 @@
 
     [self.view addSubview:self.bottomView];
     [self.view addSubview:self.headerView];
-    [self.bottomView addSubview:self.camareBtn];
+
     self.processView.center = self.camareBtn.center;
     [self.bottomView addSubview:self.processView];
+    [self.bottomView addSubview:self.camareBtn];
+    
     [self.bottomView addSubview:self.dismissBtn];
 
     [self.view.layer addSublayer:self.videoPreviewLayer];
     self.isFront = YES;
     
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPreview:) name:@"openVideoPreview" object:nil];
+    
+}
+
+- (void)openPreview:(NSNotification *)notifice {
+    NSURL *url = notifice.object;
+    
+    self.headerView.hidden = YES;
+    [self.videoPreviewLayer removeFromSuperlayer];
+    
+    PreviewController *vc = [[PreviewController alloc] init];
+    vc.view.frame = self.view.bounds;
+    vc.url = url;
+    [self.view addSubview:vc.view];
+    
 }
 
 //开始录制
 - (void) startCameraRecording{
+    NSLog(@"213");
     [self startTime];
     [self.tools startCapture];
 }
@@ -67,13 +88,14 @@
 //停止录制
 - (void)stopCameraRecording {
     [self stopTime];
-    [self.tools stopCapture];
-    //[self.tools stopRecordFunction];
-    //[self.videoPreviewLayer removeFromSuperlayer];
+    //[self.tools stopCapture];
+    [self.tools stopRecordFunction];
+    
 }
 
 - (void)dismissController {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 #pragma mark - delegate

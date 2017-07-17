@@ -281,17 +281,45 @@
 }
 -(void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error{
     NSLog(@"视频录制完成.");
-    //视频录入完成之后在后台将视频存储到相
     
-    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-        [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:outputFileURL];
-    } completionHandler:^(BOOL success, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"保存视频到相簿过程中发生错误，错误信息：%@",error.localizedDescription);
+    //压缩
+    AVAsset* asset = [AVAsset assetWithURL:outputFileURL];
+    AVAssetExportSession * session = [[AVAssetExportSession alloc] initWithAsset:asset presetName:AVAssetExportPresetMediumQuality];
+    session.shouldOptimizeForNetworkUse = YES;
+    NSString* path =[[self getVideoPathCache] stringByAppendingPathComponent:[self getVideoNameWithType:@"mp4"]];
+    
+    //NSString *path = [defultPath stringByAppendingString:[self getVideoNameWithType:@"mp4"]];
+    //判断文件是否存在，如果已经存在删除
+    [[NSFileManager defaultManager]removeItemAtPath:path error:nil];
+    //设置输出路径
+    session.outputURL = [NSURL fileURLWithPath:path];
+    //设置输出类型 这里可以更改输出的类型 具体可以看文档描述
+    session.outputFileType = AVFileTypeMPEG4;
+    [session exportAsynchronouslyWithCompletionHandler:^{
+        //压缩成功
+        if(session.status==AVAssetExportSessionStatusCompleted) {
+            
+            
+            //此处设置预览?
+            NSLog(@"====== %@",session.outputURL);
+            //视频录入完成之后在后台将视频存储到相
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:session.outputURL];
+            } completionHandler:^(BOOL success, NSError * _Nullable error) {
+                if (error) {
+                    NSLog(@"保存视频到相簿过程中发生错误，错误信息：%@",error.localizedDescription);
+                }else {
+                    NSLog(@"成功保存视频到相簿.");
+                }
+            }];
         }else {
-        NSLog(@"成功保存视频到相簿.");
+            NSLog(@"error");
         }
     }];
+    
+    
+
+    
     
 }
 

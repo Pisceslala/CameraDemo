@@ -19,6 +19,8 @@
  */
 - (AVCaptureVideoPreviewLayer *)previewLayer;
 
+
+
 /**
  启动录制功能
  */
@@ -57,4 +59,6 @@
  @param isFront 是否是前置
  */
 - (void)changeCameraInputDeviceisFront:(BOOL)isFront;
+
+
 @end
