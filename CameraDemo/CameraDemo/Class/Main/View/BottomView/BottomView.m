@@ -1,32 +1,24 @@
 //
-//  CameraViewController.m
+//  BottomView.m
 //  CameraDemo
 //
 //  Created by Pisces on 2017/7/17.
 //  Copyright © 2017年 Pisces. All rights reserved.
 //
 
-#import "CameraViewController.h"
+#import "BottomView.h"
 #import "VideoTools.h"
 #import "VideoProcessView.h"
-#import "BottomView.h"
-#import "HeaderView.h"
 
-#define kVideoMaxTime 10.0 // MAX TIME
+#define kVideoMaxTime 10.0
 
-@interface CameraViewController ()<HeaderViewDelegate>
-
-@property (strong, nonatomic) AVCaptureVideoPreviewLayer *videoPreviewLayer;
+@interface BottomView ()
 
 @property (strong, nonatomic) VideoTools *tools;
-
-@property (strong, nonatomic) UIView *bottomView;
 
 @property (strong, nonatomic) UIButton *camareBtn;
 
 @property (strong, nonatomic) UIButton *dismissBtn;
-
-@property (strong, nonatomic) HeaderView *headerView;
 
 @property (strong, nonatomic) VideoProcessView *processView;
 
@@ -34,59 +26,59 @@
 @property (nonatomic, assign) CGFloat timeMargin;
 
 @property (nonatomic, strong) NSTimer *timer;
-@property (assign, nonatomic) BOOL isFront;
 
 @end
 
-@implementation CameraViewController
+@implementation BottomView
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    self.view.backgroundColor = [UIColor orangeColor];
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self configViews];
+    }
+    return self;
+}
 
-    [self.view addSubview:self.bottomView];
-    [self.view addSubview:self.headerView];
-    [self.bottomView addSubview:self.camareBtn];
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self configViews];
+    }
+    return self;
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        [self configViews];
+    }
+    return self;
+}
+
+- (void)configViews {
+    [self addSubview:self.camareBtn];
     self.processView.center = self.camareBtn.center;
-    [self.bottomView addSubview:self.processView];
-    [self.bottomView addSubview:self.dismissBtn];
-
-    [self.view.layer addSublayer:self.videoPreviewLayer];
-    self.isFront = YES;
-    
+    [self addSubview:self.processView];
+    [self addSubview:self.dismissBtn];
 }
 
 //开始录制
-- (void) startCameraRecording{
-    [self startTime];
-    [self.tools startCapture];
+- (void)startCameraRecording {
+    __weak typeof(self)weakSelf = self;
+    if ([weakSelf.delegate respondsToSelector:@selector(startCameraRecordingBtnClick)]) {
+        [weakSelf.delegate startCameraRecordingBtnClick];
+    }
 }
 
 //停止录制
 - (void)stopCameraRecording {
-    [self stopTime];
-    [self.tools stopCapture];
-    //[self.tools stopRecordFunction];
-    //[self.videoPreviewLayer removeFromSuperlayer];
+   __weak typeof(self)weakSelf = self;
+    if ([weakSelf.delegate respondsToSelector:@selector(stopCameraRecordingBtnClick)]) {
+        [weakSelf.delegate stopCameraRecordingBtnClick];
+    }
 }
 
 - (void)dismissController {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - delegate
-- (void)changeCameraInputDeviceisOnClick {
-    [self.tools changeCameraInputDeviceisFront:self.isFront];
-    self.isFront = !self.isFront;
-}
-
-- (void)changeCameraDriveFlashOnClick:(UIButton *)flashBtn {
-    if (flashBtn.selected) {
-        [self.tools openFlashLight];
-    }else {
-        [self.tools closeFlashLight];
+    __weak typeof(self)weakSelf = self;
+    if ([weakSelf.delegate respondsToSelector:@selector(clickDismissButtonInBottomView)]) {
+        [weakSelf.delegate clickDismissButtonInBottomView];
     }
 }
 
@@ -110,7 +102,7 @@
     }
     
     self.timeCount += self.timeMargin;
-
+    
     self.processView.progress = self.timeCount / kVideoMaxTime;
 }
 
@@ -123,18 +115,6 @@
 }
 
 #pragma mark - GET
-- (AVCaptureVideoPreviewLayer *)videoPreviewLayer {
-    if (_videoPreviewLayer == nil) {
-        
-        _videoPreviewLayer = [self.tools previewLayer];
-        _videoPreviewLayer.frame = self.view.layer.bounds;
-        _videoPreviewLayer.zPosition = -1;
-        //开启录制功能
-        [self.tools startRecordFunction];
-        
-    }
-    return _videoPreviewLayer;
-}
 
 - (VideoTools *)tools {
     if (_tools == nil) {
@@ -143,25 +123,16 @@
     return _tools;
 }
 
-- (UIView *)bottomView {
-    if (_bottomView == nil) {
-        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - 110, self.view.frame.size.width, 110)];
-        //_bottomView.delegate = self;
-        _bottomView.backgroundColor = [UIColor clearColor];
-    }
-    return _bottomView;
-}
-
 - (UIButton *)camareBtn {
     if (_camareBtn == nil) {
-        _camareBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.bottomView.center.x - 32, 0, 64, 64)];
+        _camareBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.center.x - 32, 0, 64, 64)];
         _camareBtn.layer.cornerRadius = _camareBtn.frame.size.height * 0.5;
         _camareBtn.layer.masksToBounds = YES;
         [_camareBtn setImage:[UIImage imageNamed:@"camera_selc"] forState:UIControlStateNormal];
         [_camareBtn setImage:[UIImage imageNamed:@"camera_Nomarl"] forState:UIControlStateHighlighted];
         [_camareBtn addTarget:self action:@selector(startCameraRecording) forControlEvents:UIControlEventTouchDown];
         [_camareBtn addTarget:self action:@selector(stopCameraRecording) forControlEvents:UIControlEventTouchUpInside];
-       
+        
     }
     return _camareBtn;
 }
@@ -172,7 +143,7 @@
         _processView = [[VideoProcessView alloc]initWithCenter:CGPointMake(widthHeight *0.5, widthHeight*0.5) radius:(widthHeight-lineWidth) *0.5];
         _processView.bounds =CGRectMake(0, 0, widthHeight, widthHeight);
         _processView.hidden = YES;
-
+        
     }
     return _processView;
 }
@@ -186,15 +157,5 @@
     return _dismissBtn;
 }
 
-- (HeaderView *)headerView {
-    if (_headerView == nil) {
-        _headerView = [[HeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
-        _headerView.delegate = self;
-    }
-    return _headerView;
-}
 
-- (void)dealloc {
-    NSLog(@"dealloc");
-}
 @end

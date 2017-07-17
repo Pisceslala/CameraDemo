@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-@interface ViedoTools : NSObject
+@interface VideoTools : NSObject
 @property (strong, nonatomic) NSString *videoPath;//视频路径
 
 

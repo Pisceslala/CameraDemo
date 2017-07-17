@@ -6,10 +6,10 @@
 //  Copyright © 2017年 Pisces. All rights reserved.
 //
 
-#import "ViedoTools.h"
+#import "VideoTools.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
-@interface ViedoTools ()<AVCaptureFileOutputRecordingDelegate>
+@interface VideoTools ()<AVCaptureFileOutputRecordingDelegate>
 @property (strong, nonatomic) AVCaptureSession *captureSession; //捕获会话
 @property (strong, nonatomic) AVCaptureDeviceInput *backCameraInput; //后置摄像头输入
 @property (strong, nonatomic) AVCaptureDeviceInput *frontCameraInput; //前置摄像头输入
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation ViedoTools
+@implementation VideoTools
 
 
 #pragma mark - API

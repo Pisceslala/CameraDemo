@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2325313A1F1C613E00AF41E0 /* VideoProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 232531391F1C613E00AF41E0 /* VideoProcessView.m */; };
+		2325313E1F1C6FC600AF41E0 /* BottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2325313D1F1C6FC600AF41E0 /* BottomView.m */; };
+		232531421F1C8C6000AF41E0 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 232531411F1C8C6000AF41E0 /* HeaderView.m */; };
 		2325430E1F1C488000DF26BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2325430D1F1C488000DF26BA /* main.m */; };
 		232543171F1C488000DF26BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 232543151F1C488000DF26BA /* Main.storyboard */; };
 		2325431A1F1C488000DF26BA /* CameraDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 232543181F1C488000DF26BA /* CameraDemo.xcdatamodeld */; };
@@ -18,7 +20,7 @@
 		2325434C1F1C496F00DF26BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 232543451F1C496F00DF26BA /* AppDelegate.m */; };
 		232543501F1C4AC900DF26BA /* OpenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2325434F1F1C4AC900DF26BA /* OpenViewController.m */; };
 		232543531F1C4B0F00DF26BA /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 232543521F1C4B0F00DF26BA /* CameraViewController.m */; };
-		232543581F1C4C5200DF26BA /* ViedoTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 232543571F1C4C5200DF26BA /* ViedoTools.m */; };
+		232543581F1C4C5200DF26BA /* VideoTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 232543571F1C4C5200DF26BA /* VideoTools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,10 @@
 /* Begin PBXFileReference section */
 		232531381F1C613E00AF41E0 /* VideoProcessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoProcessView.h; sourceTree = "<group>"; };
 		232531391F1C613E00AF41E0 /* VideoProcessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoProcessView.m; sourceTree = "<group>"; };
+		2325313C1F1C6FC600AF41E0 /* BottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomView.h; sourceTree = "<group>"; };
+		2325313D1F1C6FC600AF41E0 /* BottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomView.m; sourceTree = "<group>"; };
+		232531401F1C8C6000AF41E0 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		232531411F1C8C6000AF41E0 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		232543091F1C488000DF26BA /* CameraDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2325430D1F1C488000DF26BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		232543161F1C488000DF26BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,8 +66,8 @@
 		2325434F1F1C4AC900DF26BA /* OpenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenViewController.m; sourceTree = "<group>"; };
 		232543511F1C4B0F00DF26BA /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		232543521F1C4B0F00DF26BA /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
-		232543561F1C4C5200DF26BA /* ViedoTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViedoTools.h; sourceTree = "<group>"; };
-		232543571F1C4C5200DF26BA /* ViedoTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViedoTools.m; sourceTree = "<group>"; };
+		232543561F1C4C5200DF26BA /* VideoTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTools.h; sourceTree = "<group>"; };
+		232543571F1C4C5200DF26BA /* VideoTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTools.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2325313B1F1C6FA600AF41E0 /* BottomView */ = {
+			isa = PBXGroup;
+			children = (
+				2325313C1F1C6FC600AF41E0 /* BottomView.h */,
+				2325313D1F1C6FC600AF41E0 /* BottomView.m */,
+			);
+			path = BottomView;
+			sourceTree = "<group>";
+		};
+		2325313F1F1C86CC00AF41E0 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				232531401F1C8C6000AF41E0 /* HeaderView.h */,
+				232531411F1C8C6000AF41E0 /* HeaderView.m */,
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
 		232543001F1C488000DF26BA = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +223,8 @@
 		2325434B1F1C496F00DF26BA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2325313F1F1C86CC00AF41E0 /* HeaderView */,
+				2325313B1F1C6FA600AF41E0 /* BottomView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -214,8 +240,8 @@
 		232543551F1C4C5200DF26BA /* VideoTools */ = {
 			isa = PBXGroup;
 			children = (
-				232543561F1C4C5200DF26BA /* ViedoTools.h */,
-				232543571F1C4C5200DF26BA /* ViedoTools.m */,
+				232543561F1C4C5200DF26BA /* VideoTools.h */,
+				232543571F1C4C5200DF26BA /* VideoTools.m */,
 				232531381F1C613E00AF41E0 /* VideoProcessView.h */,
 				232531391F1C613E00AF41E0 /* VideoProcessView.m */,
 			);
@@ -357,12 +383,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				232543531F1C4B0F00DF26BA /* CameraViewController.m in Sources */,
-				232543581F1C4C5200DF26BA /* ViedoTools.m in Sources */,
+				232531421F1C8C6000AF41E0 /* HeaderView.m in Sources */,
+				232543581F1C4C5200DF26BA /* VideoTools.m in Sources */,
 				232543501F1C4AC900DF26BA /* OpenViewController.m in Sources */,
 				2325431A1F1C488000DF26BA /* CameraDemo.xcdatamodeld in Sources */,
 				2325430E1F1C488000DF26BA /* main.m in Sources */,
 				2325434C1F1C496F00DF26BA /* AppDelegate.m in Sources */,
 				2325313A1F1C613E00AF41E0 /* VideoProcessView.m in Sources */,
+				2325313E1F1C6FC600AF41E0 /* BottomView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
