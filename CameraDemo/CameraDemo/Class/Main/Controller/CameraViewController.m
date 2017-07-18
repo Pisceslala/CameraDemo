@@ -47,8 +47,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor orangeColor];
-
+   
     [self.view addSubview:self.bottomView];
     [self.view addSubview:self.headerView];
 
@@ -61,26 +60,35 @@
     [self.view.layer addSublayer:self.videoPreviewLayer];
     self.isFront = YES;
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPreview:) name:@"openVideoPreview" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPreview:) name:@"openVideoPreview" object:nil];
     
 }
 
 - (void)openPreview:(NSNotification *)notifice {
     NSURL *url = notifice.object;
     
-    self.headerView.hidden = YES;
-    [self.videoPreviewLayer removeFromSuperlayer];
+    self.view.backgroundColor = [UIColor orangeColor];
+    self.previewVC = [[PreviewController alloc] init];
+    self.previewVC.view.frame = [UIScreen mainScreen].bounds;
+    [self.view addSubview:self.previewVC.view];
+    self.previewVC.url = url;
     
-    PreviewController *vc = [[PreviewController alloc] init];
-    vc.view.frame = self.view.bounds;
-    vc.url = url;
-    [self.view addSubview:vc.view];
     
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.bottomView setHidden:YES];
+        [self.headerView setHidden:YES];
+        [self.videoPreviewLayer removeFromSuperlayer];
+    });
+    
+    __weak typeof(self)weakSelf = self;
+    [self.previewVC setDismissController:^{
+        [weakSelf dismissController];
+    }];
 }
 
 //开始录制
 - (void) startCameraRecording{
-    NSLog(@"213");
     [self startTime];
     [self.tools startCapture];
 }

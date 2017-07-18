@@ -46,6 +46,7 @@
     NSString *outputFielPath=[ defultPath stringByAppendingPathComponent:[self getVideoNameWithType:@"mp4"]];
     NSLog(@"save path is :%@",outputFielPath);
     NSURL *fileUrl=[NSURL fileURLWithPath:outputFielPath];
+    
     //设置录制视频流输出的路径
     [self.captureMovieFileOutput startRecordingToOutputFileURL:fileUrl recordingDelegate:self];
 }
@@ -300,9 +301,7 @@
         if(session.status==AVAssetExportSessionStatusCompleted) {
             
             
-            //此处设置预览?
-            NSLog(@"====== %@",session.outputURL);
-            //视频录入完成之后在后台将视频存储到相
+            //视频录入完成之后在后台将视频存储到相(可提出来,让用户选择是否存储)
             [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
                 [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:session.outputURL];
             } completionHandler:^(BOOL success, NSError * _Nullable error) {
@@ -310,8 +309,12 @@
                     NSLog(@"保存视频到相簿过程中发生错误，错误信息：%@",error.localizedDescription);
                 }else {
                     NSLog(@"成功保存视频到相簿.");
+                    
                 }
             }];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"openVideoPreview" object:session.outputURL];
+
         }else {
             NSLog(@"error");
         }
